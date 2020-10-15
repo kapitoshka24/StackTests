@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 
 namespace Lab1_Stack
 {
-    public class NodeStack<T> : IEnumerable<T>, ICollection, INotifyCollectionChanged
+    public class MyStack<T> : IEnumerable<T>, ICollection, INotifyCollectionChanged
     {
         Node<T> head;
         int count;
 
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
-        private bool IsEmpty
+        public bool IsEmpty
         {
             get
             {
@@ -69,7 +69,7 @@ namespace Lab1_Stack
         {
             if (IsEmpty)
             {
-                throw new InvalidOperationException("\nStack is empty!");
+                throw new InvalidOperationException("Stack is empty!");
             }
         }
 
@@ -85,13 +85,12 @@ namespace Lab1_Stack
                 yield return current.Data;
             }
         }
-        void ICollection.CopyTo(Array array, int index)
+        public void CopyTo(Array array, int index)
         {
-            int item = 0;
 
-            for (Node<T> node = head; node != null; node = node.Next, item++)
+            for (Node<T> node = head; node != null; node = node.Next)
             {
-                array.SetValue(node.Data, item);
+                array.SetValue(node.Data, (count - 1) - index++);
             }
         }
     }

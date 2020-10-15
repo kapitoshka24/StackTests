@@ -8,11 +8,11 @@ namespace lab1_Program
 {
     class Program
     {
-        static NodeStack<string> stack;
+        static MyStack<string> stack;
         static string message;
         static void Main(string[] args)
         {
-            stack = new NodeStack<string>();
+            stack = new MyStack<string>();
 
             stack.CollectionChanged += Stack_CollectionChanged;
 
@@ -122,7 +122,7 @@ namespace lab1_Program
                         $"Your deleted item is '{e.OldItems[0]}'\n";
                     break;
             }
-            message += $"Amount of items in stack: {((NodeStack<string>)sender).Count}";
+            message += $"Amount of items in stack: {((MyStack<string>)sender).Count}";
         }
     }
 }
